@@ -1,0 +1,5 @@
+dist/
+melissadatacloudapi.egg-info/
+__pycache__/
+setup.py
+build/
