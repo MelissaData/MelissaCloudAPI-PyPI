@@ -5,7 +5,7 @@ from .CloudApiBase import CloudApiBase
 class GlobalExpressEntry(CloudApiBase):
 
     def __init__(self, license):
-        super().__init__("https://expressentry.melissadata.net", "/web/ExpressAddress")
+        super().__init__("https://expressentry.melissadata.net", "/web/GlobalExpressAddress")
         self.license = license or os.environ.get("MD_LICENSE")
         self.parameters["format"] = "json"
 
@@ -249,47 +249,6 @@ class GlobalExpressEntry(CloudApiBase):
     def get_native_char_set(self):
         return self.parameters.get("nativecharset", "")
     
-    
-    def get_express_address(self, type):
-        """
-        Synchronous function sends the CloudAPI request using the /web/ExpressAddress endpoint
-        """
-        self.set_endpoint("/web/ExpressAddress")
-        return self.get(type)
-
-    
-    def get_express_city_state(self, type):
-        """
-        Synchronous function sends the CloudAPI request using the /web/ExpressCityState endpoint
-        """
-        self.set_endpoint("/web/ExpressCityState")
-        return self.get(type)
-
-    
-    def get_express_postal_code(self, type):
-        """
-        Synchronous function sends the CloudAPI request using the /web/ExpressPostalCode endpoint
-        """
-        self.set_endpoint("/web/ExpressPostalCode")
-        return self.get(type)
-
-    
-    def get_express_street(self, type):
-        """
-        Synchronous function sends the CloudAPI request using the /web/ExpressStreet endpoint
-        """
-        self.set_endpoint("/web/ExpressStreet")
-        return self.get(type)
-
-    
-    def get_express_free_form(self, type):
-        """
-        Synchronous function sends the CloudAPI request using the /web/ExpressFreeForm endpoint
-        """
-        self.set_endpoint("/web/ExpressFreeForm")
-        return self.get(type)
-
-    
     def get_global_express_address(self, type):
         """
         Synchronous function sends the CloudAPI request using the /web/GlobalExpressAddress endpoint
@@ -297,7 +256,6 @@ class GlobalExpressEntry(CloudApiBase):
         self.set_endpoint("/web/GlobalExpressAddress")
         return self.get(type)
 
-    
     def get_global_express_locality_administrative_area(self, type):
         """
         Synchronous function sends the CloudAPI request using the /web/GlobalExpressLocalityAdministrativeArea endpoint
@@ -348,6 +306,8 @@ class GlobalExpressEntry(CloudApiBase):
         response_objectect = json.loads(json_response)
         version = response_objectect.get("BuildNumber", "")
         return version
+    
+    
 
 
 
