@@ -57,6 +57,8 @@ class PersonatorIdentity(CloudApiBase):
         setattr(self, f"_{attr_name}", value)
         self.parameters[self.parameter_mappings[attr_name]] = value
 
+    # Properties
+
     @property
     def action(self):
         return self._action
@@ -297,8 +299,8 @@ class PersonatorIdentity(CloudApiBase):
     def privacy(self, value):
         self._set_parameter("privacy", value)
 
-
     # Setters
+
     def set_action(self, action):
         self._set_parameter("action", action)
 
@@ -409,98 +411,101 @@ class PersonatorIdentity(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_action(self):
-        return self.parameters.get("act") or ""
+        return self.parameters.get(self.parameter_mappings["action"], "")
 
     def get_national_id(self):
-        return self.parameters.get("nat") or ""
+        return self.parameters.get(self.parameter_mappings["national_id"], "")
 
     def get_first_name(self):
-        return self.parameters.get("first") or ""
+        return self.parameters.get(self.parameter_mappings["first_name"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last") or ""
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full") or ""
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_company(self):
-        return self.parameters.get("comp") or ""
+        return self.parameters.get(self.parameter_mappings["company"], "")
 
     def get_phone(self):
-        return self.parameters.get("phone") or ""
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_email(self):
-        return self.parameters.get("email") or ""
+        return self.parameters.get(self.parameter_mappings["email"], "")
 
     def get_dob(self):
-        return self.parameters.get("dob") or ""
+        return self.parameters.get(self.parameter_mappings["dob"], "")
 
     def get_account_number(self):
-        return self.parameters.get("accountNumber") or ""
+        return self.parameters.get(self.parameter_mappings["account_number"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_address_line_2(self):
-        return self.parameters.get("a2") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_address_line_3(self):
-        return self.parameters.get("a3") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_3"], "")
 
     def get_address_line_4(self):
-        return self.parameters.get("a4") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_4"], "")
 
     def get_address_line_5(self):
-        return self.parameters.get("a5") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_5"], "")
 
     def get_address_line_6(self):
-        return self.parameters.get("a6") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_6"], "")
 
     def get_address_line_7(self):
-        return self.parameters.get("a7") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_7"], "")
 
     def get_address_line_8(self):
-        return self.parameters.get("a8") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_8"], "")
 
     def get_locality(self):
-        return self.parameters.get("loc") or ""
+        return self.parameters.get(self.parameter_mappings["locality"], "")
 
     def get_administrative_area(self):
-        return self.parameters.get("admarea") or ""
+        return self.parameters.get(self.parameter_mappings["administrative_area"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal") or ""
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry") or ""
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_country_origin(self):
-        return self.parameters.get("ctryOrg") or ""
+        return self.parameters.get(self.parameter_mappings["country_origin"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t") or ""
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_address_opt(self):
-        return self.parameters.get("addrOpt") or ""
+        return self.parameters.get(self.parameter_mappings["address_opt"], "")
 
     def get_name_opt(self):
-        return self.parameters.get("nameOpt") or ""
+        return self.parameters.get(self.parameter_mappings["name_opt"], "")
 
     def get_email_opt(self):
-        return self.parameters.get("emailOpt") or ""
+        return self.parameters.get(self.parameter_mappings["email_opt"], "")
 
     def get_phone_opt(self):
-        return self.parameters.get("phoneOpt") or ""
+        return self.parameters.get(self.parameter_mappings["phone_opt"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt") or ""
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_privacy(self):
-        return self.parameters.get("privacy") or ""
+        return self.parameters.get(self.parameter_mappings["privacy"], "")
 
     def get_post_body(self):
         return self.post_body or ""
+    
+    # Class Methods
     
     def post(self, response_type=None):
         """

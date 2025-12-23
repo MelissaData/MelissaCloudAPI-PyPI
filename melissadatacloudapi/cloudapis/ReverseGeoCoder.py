@@ -31,6 +31,7 @@ class ReverseGeoCoder(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def latitude(self):
         return self._latitude
@@ -81,6 +82,7 @@ class ReverseGeoCoder(CloudApiBase):
 
 
     # Setters
+
     def set_latitude(self, latitude: str):
         self._set_parameter("latitude", latitude)
 
@@ -119,28 +121,30 @@ class ReverseGeoCoder(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
-    def get_latitude(self) -> str:
-        return self.parameters.get("lat", "")
 
-    def get_longitude(self) -> str:
-        return self.parameters.get("long", "")
+    def get_latitude(self):
+        return self.parameters.get(self.parameter_mappings["latitude"], "")
 
-    def get_max_records(self) -> str:
-        return self.parameters.get("recs", "")
+    def get_longitude(self):
+        return self.parameters.get(self.parameter_mappings["longitude"], "")
 
-    def get_max_distance(self) -> str:
-        return self.parameters.get("dist", "")
+    def get_max_records(self):
+        return self.parameters.get(self.parameter_mappings["max_records"], "")
 
-    def get_transmission_reference(self) -> str:
-        return self.parameters.get("t", "")
+    def get_max_distance(self):
+        return self.parameters.get(self.parameter_mappings["max_distance"], "")
 
-    def get_opt(self) -> str:
-        return self.parameters.get("opt", "")
+    def get_transmission_reference(self):
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
+
+    def get_opt(self):
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_post_batch_body(self):
         return self.post_body
     
     # Class Methods
+
     def get_do_lookup(self, response_type):
         """
         This synchronous function sends the CloudAPI request using the /v3/web/ReverseGeoCode/doLookup endpoint

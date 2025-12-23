@@ -15,6 +15,8 @@ class CloudApiBase(ABC):
         self.license = None
         self.endpoint = endpoint
         self.parameters = {}
+        self.parameter_mappings = {}
+
 
     # Setters
     def set_base_url(self, base_url):
@@ -52,7 +54,7 @@ class CloudApiBase(ABC):
         elif parameter.lower() == "format":
             return self.base_url
         
-        return self.parameters.get(parameter, "")
+        return self.parameters.get(self.parameter_mappings[parameter], "")
 
     # Class Methods
     def clear(self):

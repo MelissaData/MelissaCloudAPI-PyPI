@@ -33,6 +33,7 @@ class StreetRoute(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def units(self):
         return self._units
@@ -82,6 +83,7 @@ class StreetRoute(CloudApiBase):
         self._set_parameter("transmission_reference", value)
 
     # Setters
+
     def set_units(self, units: str):
         self._set_parameter("units", units)
 
@@ -120,28 +122,30 @@ class StreetRoute(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_units(self):
-        return self.parameters.get("units", "")
+        return self.parameters.get(self.parameter_mappings["units"], "")
 
     def get_start_latitude(self):
-        return self.parameters.get("StartLatitude", "")
+        return self.parameters.get(self.parameter_mappings["start_latitude"], "")
 
     def get_start_longitude(self):
-        return self.parameters.get("StartLongitude", "")
+        return self.parameters.get(self.parameter_mappings["start_longitude"], "")
 
     def get_end_latitude(self):
-        return self.parameters.get("EndLatitude", "")
+        return self.parameters.get(self.parameter_mappings["end_latitude"], "")
 
     def get_end_longitude(self):
-        return self.parameters.get("EndLongitude", "")
+        return self.parameters.get(self.parameter_mappings["end_longitude"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_post_body(self):
         return self.post_body
     
     # Class Methods
+    
     def add_record(self, request):
         self.records.append(request)
     

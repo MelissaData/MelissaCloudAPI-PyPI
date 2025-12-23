@@ -267,58 +267,58 @@ class BusinessCoder(CloudApiBase):
 
     # Getters
     def get_record_id(self):
-        return self.parameters.get("rec", "")
+        return self.parameters.get(self.parameter_mappings["record_id"], "")
 
     def get_company(self):
-        return self.parameters.get("comp", "")
+        return self.parameters.get(self.parameter_mappings["company"], "")
 
     def get_phone(self):
-        return self.parameters.get("phone", "")
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1", "")
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_address_line_2(self):
-        return self.parameters.get("a2", "")
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_suite(self):
-        return self.parameters.get("suite", "")
+        return self.parameters.get(self.parameter_mappings["suite"], "")
 
     def get_city(self):
-        return self.parameters.get("city", "")
+        return self.parameters.get(self.parameter_mappings["city"], "")
 
     def get_state(self):
-        return self.parameters.get("state", "")
+        return self.parameters.get(self.parameter_mappings["state"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry", "")
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_mak(self):
-        return self.parameters.get("mak", "")
+        return self.parameters.get(self.parameter_mappings["mak"], "")
 
     def get_stock_ticker(self):
-        return self.parameters.get("stock", "")
+        return self.parameters.get(self.parameter_mappings["stock_ticker"], "")
 
     def get_web_address(self):
-        return self.parameters.get("web", "")
+        return self.parameters.get(self.parameter_mappings["web_address"], "")
 
     def get_mek(self):
-        return self.parameters.get("mek", "")
+        return self.parameters.get(self.parameter_mappings["mek"], "")
 
     def get_free_form(self):
-        return self.parameters.get("freeform", "")
+        return self.parameters.get(self.parameter_mappings["free_form"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols", "")
+        return self.parameters.get(self.parameter_mappings["cols"], "")
 
     def get_post_body(self):
         return self.post_body

@@ -206,48 +206,43 @@ class GlobalExpressEntry(CloudApiBase):
     # Getters
 
     def get_address_line_1(self):
-        if "line1" in self.parameters:
-            return self.parameters["line1"]
-        elif "address1" in self.parameters:
-            return self.parameters["address1"]
-        else:
-            return ""
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_city(self):
-        return self.parameters.get("city", "")
+        return self.parameters.get(self.parameter_mappings["city"], "")
 
     def get_state(self):
-        return self.parameters.get("state", "")
+        return self.parameters.get(self.parameter_mappings["state"], "")
 
     def get_postal(self):
-        return self.parameters.get("postalcode", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_free_form(self):
-        return self.parameters.get("ff", "")
+        return self.parameters.get(self.parameter_mappings["free_form"], "")
 
     def get_thoroughfare(self):
-        return self.parameters.get("thoroughfare", "")
+        return self.parameters.get(self.parameter_mappings["thoroughfare"], "")
 
     def get_locality(self):
-        return self.parameters.get("locality", "")
+        return self.parameters.get(self.parameter_mappings["locality"], "")
 
     def get_administrative_area(self):
-        return self.parameters.get("administrativearea", "")
+        return self.parameters.get(self.parameter_mappings["administrative_area"], "")
 
     def get_country(self):
-        return self.parameters.get("country", "")
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_max_records(self):
-        return self.parameters.get("maxrecords", "")
+        return self.parameters.get(self.parameter_mappings["max_records"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols", "")
+        return self.parameters.get(self.parameter_mappings["cols"], "")
 
     def get_native_char_set(self):
-        return self.parameters.get("nativecharset", "")
+        return self.parameters.get(self.parameter_mappings["native_char_set"], "")
     
     def get_global_express_address(self, type):
         """

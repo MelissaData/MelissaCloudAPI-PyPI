@@ -33,6 +33,7 @@ class GlobalPhone(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def phone(self):
         return self._phone
@@ -74,6 +75,7 @@ class GlobalPhone(CloudApiBase):
         self._set_parameter("opt", value)
 
     # Setters
+
     def set_phone(self, value):
         self._set_parameter("phone", value)
 
@@ -109,20 +111,21 @@ class GlobalPhone(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_phone(self):
-        return self.parameters.get("phone") or ""
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry") or ""
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_country_origin(self):
-        return self.parameters.get("ctryOrg") or ""
+        return self.parameters.get(self.parameter_mappings["country_origin"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t") or ""
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt") or ""
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_post_body(self):
         return self.post_body or ""

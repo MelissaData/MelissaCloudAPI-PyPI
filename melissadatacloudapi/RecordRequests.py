@@ -499,5 +499,21 @@ class StreetRouteRecordRequest:
             "EndLongitude": self.end_longitude
         }
 
+class TokenServerRecordRequest:
+    def __init__(self, record_id="", ip="", l="", p="", ts=""):
+        self.record_id = record_id
+        self.ip = ip
+        self.l = l
+        self.p = p
+        self.ts = ts
+
+    def to_dict(self):
+        return {
+            "RecordID": self.record_id,
+            "IP": self.ip,
+            "L": self.l,
+            "P": self.p,
+            "TS": self.ts
+        }
 
 

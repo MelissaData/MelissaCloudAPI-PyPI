@@ -47,6 +47,7 @@ class GlobalAddressVerification(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+    
     @property
     def organization(self):
         return self._organization
@@ -280,61 +281,61 @@ class GlobalAddressVerification(CloudApiBase):
     # Getters
 
     def get_organization(self):
-        return self.parameters.get("org", "")
+        return self.parameters.get(self.parameter_mappings["organization"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last", "")
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1", "")
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_address_line_2(self):
-        return self.parameters.get("a2", "")
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_address_line_3(self):
-        return self.parameters.get("a3", "")
+        return self.parameters.get(self.parameter_mappings["address_line_3"], "")
 
     def get_address_line_4(self):
-        return self.parameters.get("a4", "")
+        return self.parameters.get(self.parameter_mappings["address_line_4"], "")
 
     def get_address_line_5(self):
-        return self.parameters.get("a5", "")
+        return self.parameters.get(self.parameter_mappings["address_line_5"], "")
 
     def get_address_line_6(self):
-        return self.parameters.get("a6", "")
+        return self.parameters.get(self.parameter_mappings["address_line_6"], "")
 
     def get_address_line_7(self):
-        return self.parameters.get("a7", "")
+        return self.parameters.get(self.parameter_mappings["address_line_7"], "")
 
     def get_address_line_8(self):
-        return self.parameters.get("a8", "")
+        return self.parameters.get(self.parameter_mappings["address_line_8"], "")
 
     def get_double_dependent_locality(self):
-        return self.parameters.get("ddeploc", "")
+        return self.parameters.get(self.parameter_mappings["double_dependent_locality"], "")
 
     def get_dependent_locality(self):
-        return self.parameters.get("deploc", "")
+        return self.parameters.get(self.parameter_mappings["dependent_locality"], "")
 
     def get_locality(self):
-        return self.parameters.get("loc", "")
+        return self.parameters.get(self.parameter_mappings["locality"], "")
 
     def get_administrative_area(self):
-        return self.parameters.get("admarea", "")
+        return self.parameters.get(self.parameter_mappings["administrative_area"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_sub_national_area(self):
-        return self.parameters.get("subnatarea", "")
+        return self.parameters.get(self.parameter_mappings["sub_national_area"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry", "")
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_post_body(self):
         return self.post_body

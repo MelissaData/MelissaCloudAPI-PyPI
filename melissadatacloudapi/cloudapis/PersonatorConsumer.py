@@ -55,6 +55,7 @@ class PersonatorConsumer(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def action(self):
         return self._action
@@ -256,6 +257,7 @@ class PersonatorConsumer(CloudApiBase):
         self._set_parameter("cols", value)
 
     # Setters
+
     def set_action(self, value):
         self._set_parameter("action", value)
     
@@ -351,85 +353,87 @@ class PersonatorConsumer(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_action(self):
-        return self.parameters.get("act", "")
+        return self.parameters.get(self.parameter_mappings["action"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1", "")
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_address_line_2(self):
-        return self.parameters.get("a2", "")
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_birth_day(self):
-        return self.parameters.get("bday", "")
+        return self.parameters.get(self.parameter_mappings["birth_day"], "")
 
     def get_birth_month(self):
-        return self.parameters.get("bmo", "")
+        return self.parameters.get(self.parameter_mappings["birth_month"], "")
 
     def get_birth_year(self):
-        return self.parameters.get("byr", "")
+        return self.parameters.get(self.parameter_mappings["birth_year"], "")
 
     def get_city(self):
-        return self.parameters.get("city", "")
+        return self.parameters.get(self.parameter_mappings["city"], "")
 
     def get_company(self):
-        return self.parameters.get("comp", "")
+        return self.parameters.get(self.parameter_mappings["company"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry", "")
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_email(self):
-        return self.parameters.get("email", "")
+        return self.parameters.get(self.parameter_mappings["email"], "")
 
     def get_first_name(self):
-        return self.parameters.get("first", "")
+        return self.parameters.get(self.parameter_mappings["first_name"], "")
 
     def get_free_form(self):
-        return self.parameters.get("ff", "")
+        return self.parameters.get(self.parameter_mappings["free_form"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full", "")
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_ip(self):
-        return self.parameters.get("ip", "")
+        return self.parameters.get(self.parameter_mappings["ip"], "")
 
     def get_last_line(self):
-        return self.parameters.get("lastline", "")
+        return self.parameters.get(self.parameter_mappings["last_line"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last", "")
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_mak(self):
-        return self.parameters.get("mak", "")
+        return self.parameters.get(self.parameter_mappings["mak"], "")
 
     def get_mik(self):
-        return self.parameters.get("MIK", "")
+        return self.parameters.get(self.parameter_mappings["mik"], "")
 
     def get_phone(self):
-        return self.parameters.get("phone", "")
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_ssn(self):
-        return self.parameters.get("ss", "")
+        return self.parameters.get(self.parameter_mappings["ssn"], "")
 
     def get_state(self):
-        return self.parameters.get("state", "")
+        return self.parameters.get(self.parameter_mappings["state"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols", "")
+        return self.parameters.get(self.parameter_mappings["cols"], "")
 
     def get_post_body(self):
         return self.post_body
 
     # Class Methods
+    
     def add_record(self, request):
         self.records.append(request)
 

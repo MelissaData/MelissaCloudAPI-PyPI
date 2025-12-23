@@ -15,6 +15,7 @@ from .ReverseGeoCoder import ReverseGeoCoder
 from .SmartMover import SmartMover
 from .SSNNameMatch import SSNNameMatch
 from .StreetRoute import StreetRoute
+from .TokenServer import TokenServer
 
 __all__ = [
     "BusinessCoder",
@@ -34,4 +35,5 @@ __all__ = [
     "SmartMover",
     "SSNNameMatch",
     "StreetRoute",
+    "TokenServer",
 ]

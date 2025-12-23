@@ -47,6 +47,7 @@ class PeopleBusinessSearch(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def address_line_1(self):
         return self._address_line_1
@@ -216,6 +217,7 @@ class PeopleBusinessSearch(CloudApiBase):
         self._set_parameter("max_records", value)
 
     # Setters
+
     def set_address_line_1(self, value):
         self._set_parameter("address_line_1", value)
 
@@ -299,68 +301,69 @@ class PeopleBusinessSearch(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_address_line_1(self):
-        return self.parameters.get("a1") or ""
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_administrative_area(self):
-        return self.parameters.get("adminarea") or ""
+        return self.parameters.get(self.parameter_mappings["administrative_area"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry") or ""
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_locality(self):
-        return self.parameters.get("loc") or ""
+        return self.parameters.get(self.parameter_mappings["locality"], "")
 
     def get_phone(self):
-        return self.parameters.get("phone") or ""
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal") or ""
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_post_direction(self):
-        return self.parameters.get("postdir") or ""
+        return self.parameters.get(self.parameter_mappings["post_direction"], "")
 
     def get_pre_direction(self):
-        return self.parameters.get("predir") or ""
+        return self.parameters.get(self.parameter_mappings["pre_direction"], "")
 
     def get_premises_number(self):
-        return self.parameters.get("premnum") or ""
+        return self.parameters.get(self.parameter_mappings["premises_number"], "")
 
     def get_sub_premises_number(self):
-        return self.parameters.get("subpremnum") or ""
+        return self.parameters.get(self.parameter_mappings["sub_premises_number"], "")
 
     def get_thoroughfare_name(self):
-        return self.parameters.get("tname") or ""
+        return self.parameters.get(self.parameter_mappings["thoroughfare_name"], "")
 
     def get_trailing_type(self):
-        return self.parameters.get("trailingtype") or ""
+        return self.parameters.get(self.parameter_mappings["trailing_type"], "")
 
     def get_any_name(self):
-        return self.parameters.get("anyname") or ""
+        return self.parameters.get(self.parameter_mappings["any_name"], "")
 
     def get_company(self):
-        return self.parameters.get("comp") or ""
+        return self.parameters.get(self.parameter_mappings["company"], "")
 
     def get_first_name(self):
-        return self.parameters.get("first") or ""
+        return self.parameters.get(self.parameter_mappings["first_name"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full") or ""
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last") or ""
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_sub_user(self):
-        return self.parameters.get("subuser") or ""
+        return self.parameters.get(self.parameter_mappings["sub_user"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t") or ""
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_match_level(self):
-        return self.parameters.get("matchlevel") or ""
+        return self.parameters.get(self.parameter_mappings["match_level"], "")
 
     def get_max_records(self):
-        return self.parameters.get("maxrecords") or ""
+        return self.parameters.get(self.parameter_mappings["max_records"], "")
 
     def get_post_body(self):
         return self.post_body

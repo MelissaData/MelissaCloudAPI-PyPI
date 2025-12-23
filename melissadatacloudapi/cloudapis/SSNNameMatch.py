@@ -33,6 +33,7 @@ class SSNNameMatch(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def ssn(self):
         return self._ssn
@@ -74,6 +75,7 @@ class SSNNameMatch(CloudApiBase):
         self._set_parameter("transmission_reference", value)
 
     # Setters
+
     def set_ssn(self, ssn):
         self._set_parameter("ssn", ssn)
 
@@ -109,25 +111,27 @@ class SSNNameMatch(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_ssn(self):
-        return self.parameters.get("ssn", "")
+        return self.parameters.get(self.parameter_mappings["ssn"], "")
 
     def get_first_name(self):
-        return self.parameters.get("first", "")
+        return self.parameters.get(self.parameter_mappings["first_name"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last", "")
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full", "")
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_post_body(self):
         return self.post_body
     
     # Class Methods
+    
     def add_record(self, request):
         self.records.append(request)
     

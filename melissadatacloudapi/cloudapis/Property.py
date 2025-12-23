@@ -44,6 +44,7 @@ class Property(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def address_key(self):
         return self._address_key
@@ -174,6 +175,7 @@ class Property(CloudApiBase):
 
 
     # Setters
+
     def set_address_key(self, address_key):
         self._set_parameter("address_key", address_key)
 
@@ -246,59 +248,61 @@ class Property(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_address_key(self):
-        return self.parameters.get("addresskey", "")
+        return self.parameters.get(self.parameter_mappings["address_key"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1", "")
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_address_line_2(self):
-        return self.parameters.get("a2", "")
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_apn(self):
-        return self.parameters.get("apn", "")
+        return self.parameters.get(self.parameter_mappings["apn"], "")
 
     def get_city(self):
-        return self.parameters.get("city", "")
+        return self.parameters.get(self.parameter_mappings["city"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry", "")
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_fips(self):
-        return self.parameters.get("fips", "")
+        return self.parameters.get(self.parameter_mappings["fips"], "")
 
     def get_free_form(self):
-        return self.parameters.get("ff", "")
+        return self.parameters.get(self.parameter_mappings["free_form"], "")
 
     def get_mak(self):
-        return self.parameters.get("mak", "")
+        return self.parameters.get(self.parameter_mappings["mak"], "")
 
     def get_state(self):
-        return self.parameters.get("state", "")
+        return self.parameters.get(self.parameter_mappings["state"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols", "")
+        return self.parameters.get(self.parameter_mappings["cols"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_owner_mak(self):
-        return self.parameters.get("mak", "")
+        return self.parameters.get(self.parameter_mappings["owner_mak"], "")
 
     def get_total_records(self):
-        return self.parameters.get("totalRecords", "")
+        return self.parameters.get(self.parameter_mappings["total_records"], "")
 
     def get_post_batch_body(self):
         return self.post_body
 
 
 # Class Methods
+
     def add_record(self, request):
         self.records.append(request)
 

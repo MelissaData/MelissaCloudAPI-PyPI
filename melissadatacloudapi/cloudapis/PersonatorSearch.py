@@ -40,6 +40,7 @@ class PersonatorSearch(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def transmission_reference(self):
         return self._transmission_reference
@@ -185,6 +186,7 @@ class PersonatorSearch(CloudApiBase):
         self._set_parameter("birth_year", value)
 
     # Setters
+
     def set_transmission_reference(self, value):
         self._set_parameter("transmission_reference", value)
 
@@ -256,61 +258,63 @@ class PersonatorSearch(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols", "")
+        return self.parameters.get(self.parameter_mappings["cols"], "")
 
     def get_free_form(self):
-        return self.parameters.get("ff", "")
+        return self.parameters.get(self.parameter_mappings["free_form"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full", "")
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_first_name(self):
-        return self.parameters.get("first", "")
+        return self.parameters.get(self.parameter_mappings["first_name"], "")
 
     def get_last_name(self):
-        return self.parameters.get("last", "")
+        return self.parameters.get(self.parameter_mappings["last_name"], "")
 
     def get_address_line_1(self):
-        return self.parameters.get("a1", "")
+        return self.parameters.get(self.parameter_mappings["address_line_1"], "")
 
     def get_action(self):
-        return self.parameters.get("act", "")
+        return self.parameters.get(self.parameter_mappings["action"], "")
 
     def get_city(self):
-        return self.parameters.get("city", "")
+        return self.parameters.get(self.parameter_mappings["city"], "")
 
     def get_state(self):
-        return self.parameters.get("state", "")
+        return self.parameters.get(self.parameter_mappings["state"], "")
 
     def get_postal(self):
-        return self.parameters.get("postal", "")
+        return self.parameters.get(self.parameter_mappings["postal"], "")
 
     def get_phone(self):
-        return self.parameters.get("phone", "")
+        return self.parameters.get(self.parameter_mappings["phone"], "")
 
     def get_email(self):
-        return self.parameters.get("email", "")
+        return self.parameters.get(self.parameter_mappings["email"], "")
 
     def get_mak(self):
-        return self.parameters.get("mak", "")
+        return self.parameters.get(self.parameter_mappings["mak"], "")
 
     def get_birth_day(self):
-        return self.parameters.get("bday", "")
+        return self.parameters.get(self.parameter_mappings["birth_day"], "")
 
     def get_birth_month(self):
-        return self.parameters.get("bmonth", "")
+        return self.parameters.get(self.parameter_mappings["birth_month"], "")
 
     def get_birth_year(self):
-        return self.parameters.get("byear", "")
+        return self.parameters.get(self.parameter_mappings["birth_year"], "")
     
     # Class Methods
+    
     def get_api_version(self):
         """
         Makes a synchronous getversion request and parses the response for the API version.

@@ -33,6 +33,7 @@ class GlobalName(CloudApiBase):
         self.parameters[self.parameter_mappings[attr_name]] = value
 
     # Properties
+
     @property
     def company(self):
         return self._company
@@ -74,6 +75,7 @@ class GlobalName(CloudApiBase):
         self._set_parameter("opt", value)
     
     # Setters
+
     def set_company(self, value):
         self._set_parameter("company", value)
 
@@ -109,20 +111,21 @@ class GlobalName(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_company(self):
-        return self.parameters.get("comp") or ""
+        return self.parameters.get(self.parameter_mappings["company"], "")
 
     def get_full_name(self):
-        return self.parameters.get("full") or ""
+        return self.parameters.get(self.parameter_mappings["full_name"], "")
 
     def get_country(self):
-        return self.parameters.get("ctry") or ""
+        return self.parameters.get(self.parameter_mappings["country"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t") or ""
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_opt(self):
-        return self.parameters.get("opt") or ""
+        return self.parameters.get(self.parameter_mappings["opt"], "")
 
     def get_post_body(self):
         return self.post_body or ""

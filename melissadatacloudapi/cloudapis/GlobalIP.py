@@ -57,6 +57,7 @@ class GlobalIP(CloudApiBase):
         self._set_parameter("cols", value)
 
     # Setters
+
     def set_ip(self, value):
         self._set_parameter("ip", value)
 
@@ -86,19 +87,21 @@ class GlobalIP(CloudApiBase):
             super().set_value(parameter, value)
 
     # Getters
+
     def get_ip(self):
-        return self.parameters.get("ip") or ""
+        return self.parameters.get(self.parameter_mappings["ip"], "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t") or ""
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
     def get_cols(self):
-        return self.parameters.get("cols") or ""
-
+        return self.parameters.get(self.parameter_mappings["cols"], "")
+    
     def get_post_body(self):
         return self.post_body or ""
     
     # Class Methods
+    
     def add_record(self, request):
         self.records.append(request)
     

@@ -89,13 +89,13 @@ class GlobalEmail(CloudApiBase):
     # Getters
 
     def get_email(self):
-        return self.parameters.get("email", "")
+        return self.parameters.get(self.parameter_mappings.get("email"), "")
 
     def get_transmission_reference(self):
-        return self.parameters.get("t", "")
+        return self.parameters.get(self.parameter_mappings.get("transmission_reference"), "")
 
     def get_opt(self):
-        return self.parameters.get("opt", "")
+        return self.parameters.get(self.parameter_mappings.get("opt"), "")
     
     def get_post_body(self):
         return self.post_body

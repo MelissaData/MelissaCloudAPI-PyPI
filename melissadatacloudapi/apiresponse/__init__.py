@@ -16,6 +16,7 @@ from .ReverseGeoCoderResponse import ReverseGeoCoderResponse
 from .SmartMoverResponse import SmartMoverResponse
 from .SSNNameMatchResponse import SSNNameMatchResponse
 from .StreetRouteResponse import StreetRouteResponse
+from .TokenServerResponse import TokenServerResponse
 
 __all__ = [
     "BusinessCoderResponse",
@@ -36,4 +37,5 @@ __all__ = [
     "SmartMoverResponse",
     "SSNNameMatchResponse",
     "StreetRouteResponse",
+    "TokenServerResponse",
 ]
