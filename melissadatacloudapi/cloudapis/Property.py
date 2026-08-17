@@ -368,6 +368,21 @@ class Property(CloudApiBase):
         self.set_endpoint("/v4/WEB/LookupHomesByOwner")
         response = self.send_post_request(self.post_body)
         return self.handle_response(response, response_type)
+
+    def get_lookup_listings(self, response_type):
+        """
+        This synchronous function sends the CloudAPI request using the /v4/WEB/LookupListings endpoint
+        """
+        self.set_endpoint("/v4/WEB/LookupListings")
+        return self.get(response_type)
+    
+    def post_lookup_listings(self, response_type):
+        """
+        This synchronous function sends a POST request to the Cloud API using the /v4/WEB/LookupListings endpoint
+        """
+        self.set_endpoint("/v4/WEB/LookupListings")
+        response = self.send_post_request(self.post_body)
+        return self.handle_response(response, response_type)
     
     def get_api_version(self):
         """

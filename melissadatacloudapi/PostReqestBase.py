@@ -109,7 +109,7 @@ class PersonatorConsumerPostRequest(PostRequestBase[PersonatorConsumerRecordRequ
     
 class PropertyPostRequest(PostRequestBase[PropertyRecordRequest]):
     def __init__(
-        self, customer_id, records: List[PropertyRecordRequest], transmission_reference=None, options=None,
+        self, customer_id, records: List[PropertyRecordRequest]=[], transmission_reference=None, options=None,
         columns="", total_records="", apn="", fips="", free_form="", property_mak="", owner_mak=""
     ):
         super().__init__(records, transmission_reference, options)

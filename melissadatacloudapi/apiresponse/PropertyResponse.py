@@ -46,7 +46,8 @@ class PropertyRecord:
                   primary_owner=None, owner_address=None, last_deed_owner_info=None, current_deed=None, tax=None, property_use_info=None, 
                   sale_info=None, property_size=None, pool=None, int_struct_info=None, int_room_info=None, int_amentities=None, ext_struct_info=None, 
                   ext_amentities=None, ext_buildings=None, utilities=None, parking=None, yard_garden_info=None, estimated_value=None, shape=None, 
-                  mak="", base_mak="", fips="", apn="", property_city="", property_state="", property_zip="", property_plus4=""
+                  mak="", base_mak="", fips="", apn="", property_city="", property_state="", property_zip="", property_plus4="",
+                  listing_info="", listing_value="", listing_agent="", listing_agent_office="", listing_features=""
                 ):
         # For LookupDeeds endpoint
         self.doc_info = doc_info
@@ -94,6 +95,14 @@ class PropertyRecord:
         self.property_state = property_state
         self.property_zip = property_zip
         self.property_plus4 = property_plus4
+
+        # For LookupListings endpoint
+        self.listing_info = listing_info
+        self.listing_value = listing_value
+        self.listing_agent = listing_agent
+        self.listing_agent_office = listing_agent_office
+        self.listing_features = listing_features
+
         
 
     @classmethod
@@ -140,7 +149,12 @@ class PropertyRecord:
             property_city=data.get("PropertyCity", ""),
             property_state=data.get("PropertyState", ""),
             property_zip=data.get("PropertyZip", ""),
-            property_plus4=data.get("PropertyPlus4", "")
+            property_plus4=data.get("PropertyPlus4", ""),
+            listing_info=PropertyListingInfo.from_dict(data.get("ListingInfo")) if data.get("ListingInfo") else None,
+            listing_value=PropertyListingValue.from_dict(data.get("ListingValue")) if data.get("ListingValue") else PropertyListingValue(),
+            listing_agent=PropertyListingAgent.from_dict(data.get("ListingAgent")) if data.get("ListingAgent") else PropertyListingAgent(),
+            listing_agent_office=PropertyListingAgentOffice.from_dict(data.get("ListingAgentOffice")) if data.get("ListingAgentOffice") else PropertyListingAgentOffice(),
+            listing_features=PropertyListingFeatures.from_dict(data.get("ListingFeatures")) if data.get("ListingFeatures") else PropertyListingFeatures()
         )
 
 
@@ -212,6 +226,7 @@ class PropertyRecord:
     def get_property_plus4(self):
         return self.property_plus4 or ""
 
+# For LookupDeeds endpoint
 
 class PropertyDocInfo:
     def __init__(
@@ -969,6 +984,7 @@ class PropertyMortgage1:
     def get_interest_change_freq(self):
         return self.interest_change_freq or ""
 
+# For LookupProperty endpoint
 
 class PropertyParcel:
     def __init__(
@@ -3383,6 +3399,7 @@ class PropertyParking(ResponseBase):
 
     @classmethod
     def from_dict(cls, data):
+        cls.data = data
         return cls(
             rv_parking_flag=data.get('RVParkingFlag', ""),
             parking_space_count=data.get('ParkingSpaceCount', ""),
@@ -3439,6 +3456,7 @@ class PropertyYardGardenInfo(ResponseBase):
 
     @classmethod
     def from_dict(cls, data):
+        cls.data = data
         return cls(
             topography_code=data.get('TopographyCode', ""),
             fence_code=data.get('FenceCode', ""),
@@ -3553,6 +3571,7 @@ class PropertyEstimatedValue(ResponseBase):
 
     @classmethod
     def from_dict(cls, data):
+        cls.data = data
         return cls(
             estimated_value=data.get('EstimatedValue', ""),
             estimated_min_value=data.get('EstimatedMinValue', ""),
@@ -3613,7 +3632,525 @@ class PropertyShape(ResponseBase):
         return self.well_known_text or ""
 
 
+# For LookupListings Endpoint
+
+class PropertyListingInfo(ResponseBase):
+    def __init__(
+        self,
+        listing_number="",
+        status="",
+        status_sub_type="",
+        initial_status="",
+        original_listing_date="",
+        current_list_price="",
+        max_list_price="",
+        max_list_price_date="",
+        min_list_price="",
+        min_list_price_date="",
+        rental_indicator="",
+        sold_date="",
+        sold_price=""
+    ):
+        self.listing_number = listing_number
+        self.status = status
+        self.status_sub_type = status_sub_type
+        self.initial_status = initial_status
+        self.original_listing_date = original_listing_date
+        self.current_list_price = current_list_price
+        self.max_list_price = max_list_price
+        self.max_list_price_date = max_list_price_date
+        self.min_list_price = min_list_price
+        self.min_list_price_date = min_list_price_date
+        self.rental_indicator = rental_indicator
+        self.sold_date = sold_date
+        self.sold_price = sold_price
+
+    @classmethod
+    def from_dict(cls, data):
+        cls.data = data
+        return cls(
+            listing_number=data.get("ListingNumber", ""),
+            status=data.get("Status", ""),
+            status_sub_type=data.get("StatusSubType", ""),
+            initial_status=data.get("InitialStatus", ""),
+            original_listing_date=data.get("OriginalListingDate", ""),
+            current_list_price=data.get("CurrentListPrice", ""),
+            max_list_price=data.get("MaxListPrice", ""),
+            max_list_price_date=data.get("MaxListPriceDate", ""),
+            min_list_price=data.get("MinListPrice", ""),
+            min_list_price_date=data.get("MinListPriceDate", ""),
+            rental_indicator=data.get("RentalIndicator", ""),
+            sold_date=data.get("SoldDate", ""),
+            sold_price=data.get("SoldPrice", "")
+        )
+
+    # Setters
+    def set_listing_number(self, listing_number):
+        self.listing_number = listing_number
+
+    def set_status(self, status):
+        self.status = status
+
+    def set_status_sub_type(self, status_sub_type):
+        self.status_sub_type = status_sub_type
+
+    def set_initial_status(self, initial_status):
+        self.initial_status = initial_status
+
+    def set_original_listing_date(self, original_listing_date):
+        self.original_listing_date = original_listing_date
+
+    def set_current_list_price(self, current_list_price):
+        self.current_list_price = current_list_price
+
+    def set_max_list_price(self, max_list_price):
+        self.max_list_price = max_list_price
+
+    def set_max_list_price_date(self, max_list_price_date):
+        self.max_list_price_date = max_list_price_date
+
+    def set_min_list_price(self, min_list_price):
+        self.min_list_price = min_list_price
+
+    def set_min_list_price_date(self, min_list_price_date):
+        self.min_list_price_date = min_list_price_date
+
+    def set_rental_indicator(self, rental_indicator):
+        self.rental_indicator = rental_indicator
+
+    def set_sold_date(self, sold_date):
+        self.sold_date = sold_date
+
+    def set_sold_price(self, sold_price):
+        self.sold_price = sold_price
+
+    # Getters
+    def get_listing_number(self):
+        return self.listing_number or ""
+
+    def get_status(self):
+        return self.status or ""
+
+    def get_status_sub_type(self):
+        return self.status_sub_type or ""
+
+    def get_initial_status(self):
+        return self.initial_status or ""
+
+    def get_original_listing_date(self):
+        return self.original_listing_date or ""
+
+    def get_current_list_price(self):
+        return self.current_list_price or ""
+
+    def get_max_list_price(self):
+        return self.max_list_price or ""
+
+    def get_max_list_price_date(self):
+        return self.max_list_price_date or ""
+
+    def get_min_list_price(self):
+        return self.min_list_price or ""
+
+    def get_min_list_price_date(self):
+        return self.min_list_price_date or ""
+
+    def get_rental_indicator(self):
+        return self.rental_indicator or ""
+
+    def get_sold_date(self):
+        return self.sold_date or ""
+
+    def get_sold_price(self):
+        return self.sold_price or ""
 
 
+class PropertyListingValue(ResponseBase):
+    def __init__(
+        self,
+        last_price_change_amount="",
+        last_price_change_date="",
+        last_status_change="",
+        last_status_change_date="",
+        last_status_sub_type_change="",
+        last_status_sub_type_change_date="",
+        prior_price_change_amount="",
+        prior_price_change_date="",
+        prior_status_change="",
+        prior_status_change_date="",
+        prior_status_sub_type_change="",
+        prior_status_sub_type_change_date=""
+    ):
+        self.last_price_change_amount = last_price_change_amount
+        self.last_price_change_date = last_price_change_date
+        self.last_status_change = last_status_change
+        self.last_status_change_date = last_status_change_date
+        self.last_status_sub_type_change = last_status_sub_type_change
+        self.last_status_sub_type_change_date = last_status_sub_type_change_date
+        self.prior_price_change_amount = prior_price_change_amount
+        self.prior_price_change_date = prior_price_change_date
+        self.prior_status_change = prior_status_change
+        self.prior_status_change_date = prior_status_change_date
+        self.prior_status_sub_type_change = prior_status_sub_type_change
+        self.prior_status_sub_type_change_date = prior_status_sub_type_change_date
+
+    @classmethod
+    def from_dict(cls, data):
+        cls.data = data
+        return cls(
+            last_price_change_amount=data.get("LastPriceChangeAmount", ""),
+            last_price_change_date=data.get("LastPriceChangeDate", ""),
+            last_status_change=data.get("LastStatusChange", ""),
+            last_status_change_date=data.get("LastStatusChangeDate", ""),
+            last_status_sub_type_change=data.get("LastStatusSubTypeChange", ""),
+            last_status_sub_type_change_date=data.get("LastStatusSubTypeChangeDate", ""),
+            prior_price_change_amount=data.get("PriorPriceChangeAmount", ""),
+            prior_price_change_date=data.get("PriorPriceChangeDate", ""),
+            prior_status_change=data.get("PriorStatusChange", ""),
+            prior_status_change_date=data.get("PriorStatusChangeDate", ""),
+            prior_status_sub_type_change=data.get("PriorStatusSubTypeChange", ""),
+            prior_status_sub_type_change_date=data.get("PriorStatusSubTypeChangeDate", "")
+        )
+
+    # Setters
+    def set_last_price_change_amount(self, last_price_change_amount):
+        self.last_price_change_amount = last_price_change_amount
+
+    def set_last_price_change_date(self, last_price_change_date):
+        self.last_price_change_date = last_price_change_date
+
+    def set_last_status_change(self, last_status_change):
+        self.last_status_change = last_status_change
+
+    def set_last_status_change_date(self, last_status_change_date):
+        self.last_status_change_date = last_status_change_date
+
+    def set_last_status_sub_type_change(self, last_status_sub_type_change):
+        self.last_status_sub_type_change = last_status_sub_type_change
+
+    def set_last_status_sub_type_change_date(self, last_status_sub_type_change_date):
+        self.last_status_sub_type_change_date = last_status_sub_type_change_date
+
+    def set_prior_price_change_amount(self, prior_price_change_amount):
+        self.prior_price_change_amount = prior_price_change_amount
+
+    def set_prior_price_change_date(self, prior_price_change_date):
+        self.prior_price_change_date = prior_price_change_date
+
+    def set_prior_status_change(self, prior_status_change):
+        self.prior_status_change = prior_status_change
+
+    def set_prior_status_change_date(self, prior_status_change_date):
+        self.prior_status_change_date = prior_status_change_date
+
+    def set_prior_status_sub_type_change(self, prior_status_sub_type_change):
+        self.prior_status_sub_type_change = prior_status_sub_type_change
+
+    def set_prior_status_sub_type_change_date(self, prior_status_sub_type_change_date):
+        self.prior_status_sub_type_change_date = prior_status_sub_type_change_date
+
+    # Getters
+    def get_last_price_change_amount(self):
+        return self.last_price_change_amount or ""
+
+    def get_last_price_change_date(self):
+        return self.last_price_change_date or ""
+
+    def get_last_status_change(self):
+        return self.last_status_change or ""
+
+    def get_last_status_change_date(self):
+        return self.last_status_change_date or ""
+
+    def get_last_status_sub_type_change(self):
+        return self.last_status_sub_type_change or ""
+
+    def get_last_status_sub_type_change_date(self):
+        return self.last_status_sub_type_change_date or ""
+
+    def get_prior_price_change_amount(self):
+        return self.prior_price_change_amount or ""
+
+    def get_prior_price_change_date(self):
+        return self.prior_price_change_date or ""
+
+    def get_prior_status_change(self):
+        return self.prior_status_change or ""
+
+    def get_prior_status_change_date(self):
+        return self.prior_status_change_date or ""
+
+    def get_prior_status_sub_type_change(self):
+        return self.prior_status_sub_type_change or ""
+
+    def get_prior_status_sub_type_change_date(self):
+        return self.prior_status_sub_type_change_date or ""
+
+
+class PropertyListingAgent(ResponseBase):
+    def __init__(
+        self,
+        license_number="",
+        name_full="",
+        address="",
+        city="",
+        state="",
+        zip_="",
+        mak="",
+        base_mak="",
+        email="",
+        phone=""
+    ):
+        self.license_number = license_number
+        self.name_full = name_full
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip_
+        self.mak = mak
+        self.base_mak = base_mak
+        self.email = email
+        self.phone = phone
+
+    @classmethod
+    def from_dict(cls, data):
+        cls.data = data
+        return cls(
+            license_number=data.get("LicenseNumber", ""),
+            name_full=data.get("NameFull", ""),
+            address=data.get("Address", ""),
+            city=data.get("City", ""),
+            state=data.get("State", ""),
+            zip_=data.get("Zip", ""),
+            mak=data.get("MAK", ""),
+            base_mak=data.get("BaseMAK", ""),
+            email=data.get("Email", ""),
+            phone=data.get("Phone", "")
+        )
+
+    # Setters
+    def set_license_number(self, license_number):
+        self.license_number = license_number
+
+    def set_name_full(self, name_full):
+        self.name_full = name_full
+
+    def set_address(self, address):
+        self.address = address
+
+    def set_city(self, city):
+        self.city = city
+
+    def set_state(self, state):
+        self.state = state
+
+    def set_zip(self, zip_):
+        self.zip = zip_
+
+    def set_mak(self, mak):
+        self.mak = mak
+
+    def set_base_mak(self, base_mak):
+        self.base_mak = base_mak
+
+    def set_email(self, email):
+        self.email = email
+
+    def set_phone(self, phone):
+        self.phone = phone
+
+    # Getters
+    def get_license_number(self):
+        return self.license_number or ""
+
+    def get_name_full(self):
+        return self.name_full or ""
+
+    def get_address(self):
+        return self.address or ""
+
+    def get_city(self):
+        return self.city or ""
+
+    def get_state(self):
+        return self.state or ""
+
+    def get_zip(self):
+        return self.zip or ""
+
+    def get_mak(self):
+        return self.mak or ""
+
+    def get_base_mak(self):
+        return self.base_mak or ""
+
+    def get_email(self):
+        return self.email or ""
+
+    def get_phone(self):
+        return self.phone or ""
+
+
+class PropertyListingAgentOffice(ResponseBase):
+    def __init__(
+        self,
+        name="",
+        address="",
+        city="",
+        state="",
+        zip_="",
+        mak="",
+        base_mak="",
+        email="",
+        phone=""
+    ):
+        self.name = name
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip_
+        self.mak = mak
+        self.base_mak = base_mak
+        self.email = email
+        self.phone = phone
+
+    @classmethod
+    def from_dict(cls, data):
+        cls.data = data
+        return cls(
+            name=data.get("Name", ""),
+            address=data.get("Address", ""),
+            city=data.get("City", ""),
+            state=data.get("State", ""),
+            zip_=data.get("Zip", ""),
+            mak=data.get("MAK", ""),
+            base_mak=data.get("BaseMAK", ""),
+            email=data.get("Email", ""),
+            phone=data.get("Phone", "")
+        )
+
+    # Setters
+    def set_name(self, name):
+        self.name = name
+
+    def set_address(self, address):
+        self.address = address
+
+    def set_city(self, city):
+        self.city = city
+
+    def set_state(self, state):
+        self.state = state
+
+    def set_zip(self, zip_):
+        self.zip = zip_
+
+    def set_mak(self, mak):
+        self.mak = mak
+
+    def set_base_mak(self, base_mak):
+        self.base_mak = base_mak
+
+    def set_email(self, email):
+        self.email = email
+
+    def set_phone(self, phone):
+        self.phone = phone
+
+    # Getters
+    def get_name(self):
+        return self.name or ""
+
+    def get_address(self):
+        return self.address or ""
+
+    def get_city(self):
+        return self.city or ""
+
+    def get_state(self):
+        return self.state or ""
+
+    def get_zip(self):
+        return self.zip or ""
+
+    def get_mak(self):
+        return self.mak or ""
+
+    def get_base_mak(self):
+        return self.base_mak or ""
+
+    def get_email(self):
+        return self.email or ""
+
+    def get_phone(self):
+        return self.phone or ""
+
+
+class PropertyListingFeatures(ResponseBase):
+    def __init__(
+        self,
+        appliances="",
+        school_district="",
+        elementary_school="",
+        middle_school="",
+        high_school="",
+        lot_features=""
+    ):
+        self.appliances = appliances
+        self.school_district = school_district
+        self.elementary_school = elementary_school
+        self.middle_school = middle_school
+        self.high_school = high_school
+        self.lot_features = lot_features
+
+    @classmethod
+    def from_dict(cls, data):
+        cls.data = data
+        return cls(
+            appliances=data.get("Appliances", ""),
+            school_district=data.get("SchoolDistrict", ""),
+            elementary_school=data.get("ElementarySchool", ""),
+            middle_school=data.get("MiddleSchool", ""),
+            high_school=data.get("HighSchool", ""),
+            lot_features=data.get("LotFeatures", "")
+        )
+
+    # Setters
+    def set_appliances(self, appliances):
+        self.appliances = appliances
+
+    def set_school_district(self, school_district):
+        self.school_district = school_district
+
+    def set_elementary_school(self, elementary_school):
+        self.elementary_school = elementary_school
+
+    def set_middle_school(self, middle_school):
+        self.middle_school = middle_school
+
+    def set_high_school(self, high_school):
+        self.high_school = high_school
+
+    def set_lot_features(self, lot_features):
+        self.lot_features = lot_features
+
+    # Getters
+    def get_appliances(self):
+        return self.appliances or ""
+
+    def get_school_district(self):
+        return self.school_district or ""
+
+    def get_elementary_school(self):
+        return self.elementary_school or ""
+
+    def get_middle_school(self):
+        return self.middle_school or ""
+
+    def get_high_school(self):
+        return self.high_school or ""
+
+    def get_lot_features(self):
+        return self.lot_features or ""
 
 

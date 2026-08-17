@@ -5,7 +5,9 @@
 
 The Melissa Cloud API Python Package provides a unified and streamlined way to access all Melissa Cloud APIs within a single, easy-to-use package. This allows developers to seamlessly integrate and access Melissa's powerful cloud-based services directly from their own development environment. 
 
-For more details about how to use the Melissa Cloud API Python Package, please visit the [Melissa Docs](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-packages-installation-guide.html#pip-installation-python)
+For the official PyPi repository, please visit [Melissa Cloud API PyPi Package](https://pypi.org/project/melissadatacloudapi/).
+
+For more details about how to use the Melissa Cloud API Python Package, please visit the [Melissa Docs](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-packages-installation-guide.html#pip-installation-python).
 
 For more details about Melissa Cloud APIs, please click [here](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-index.html).
 
