@@ -18,7 +18,9 @@ class StreetRoute(CloudApiBase):
             "start_longitude": "StartLongitude",
             "end_latitude": "EndLatitude",
             "end_longitude": "EndLongitude",
-            "transmission_reference": "t"
+            "transmission_reference": "t",
+            "opt": "opt",
+            "points": "points"
         }
 
         # Initialize private backing fields
@@ -82,6 +84,22 @@ class StreetRoute(CloudApiBase):
     def transmission_reference(self, value):
         self._set_parameter("transmission_reference", value)
 
+    @property
+    def opt(self):
+        return self._opt
+
+    @opt.setter
+    def opt(self, value):
+        self._set_parameter("opt", value)
+
+    @property
+    def points(self):
+        return self._points
+
+    @points.setter
+    def points(self, value):
+        self._set_parameter("points", value)
+
     # Setters
 
     def set_units(self, units: str):
@@ -101,6 +119,12 @@ class StreetRoute(CloudApiBase):
 
     def set_transmission_reference(self, transmission_reference: str):
         self._set_parameter("transmission_reference", transmission_reference)
+
+    def set_opt(self, opt: str):
+        self._set_parameter("opt", opt)
+
+    def set_points(self, points: str):
+        self._set_parameter("points", points)
 
     def set_post_body(self, post_body):
         self.post_body = post_body
@@ -141,6 +165,12 @@ class StreetRoute(CloudApiBase):
     def get_transmission_reference(self):
         return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
 
+    def get_opt(self):
+        return self.parameters.get(self.parameter_mappings["opt"], "")
+
+    def get_points(self):
+        return self.parameters.get(self.parameter_mappings["points"], "")
+
     def get_post_body(self):
         return self.post_body
     
@@ -152,6 +182,20 @@ class StreetRoute(CloudApiBase):
     def clear_records(self):
         self.records.clear()
 
+    def get_distance(self, response_type=None):
+        """
+        Synchronous function sends the CloudAPI request using the /v1/WEB/StreetRoute/getDistance endpoint
+        """
+        self.set_endpoint("/v1/WEB/StreetRoute/getDistance")
+        return self.get(response_type)
+
+    def get_distance_multipoint(self, response_type=None):
+        """
+        Synchronous function sends the CloudAPI request using the /v1/WEB/StreetRoute/getDistanceMultipoint endpoint
+        """
+        self.set_endpoint("/v1/WEB/StreetRoute/getDistanceMultipoint")
+        return self.get(response_type)
+
     def post(self, response_type=None):
         """
         This synchronous function makes the batch request using the post body.
@@ -160,9 +204,13 @@ class StreetRoute(CloudApiBase):
             A string or deserialized json response object.
         """
 
+        self.set_endpoint("/v1/WEB/StreetRoute/getDistance")
+
         if self.records and len(self.records) > 0:
             post_request = StreetRoutePostRequest(
                 transmission_reference=self.get_transmission_reference(),
+                options=self.get_opt(),
+                units=self.get_units(),
                 records=self.records,
                 customer_id=self.get_license()
             )

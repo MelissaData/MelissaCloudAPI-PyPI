@@ -26,6 +26,7 @@ class GlobalAddressVerification(CloudApiBase):
             "double_dependent_locality": "ddeploc",
             "dependent_locality": "deploc",
             "locality": "loc",
+            "sub_administrative_area": "subadmarea",
             "administrative_area": "admarea",
             "postal": "postal",
             "sub_national_area": "subnatarea",
@@ -153,6 +154,14 @@ class GlobalAddressVerification(CloudApiBase):
         self._set_parameter("locality", value)
 
     @property
+    def sub_administrative_area(self):
+        return self._sub_administrative_area
+
+    @sub_administrative_area.setter
+    def sub_administrative_area(self, value):
+        self._set_parameter("sub_administrative_area", value)
+
+    @property
     def administrative_area(self):
         return self._administrative_area
 
@@ -241,6 +250,9 @@ class GlobalAddressVerification(CloudApiBase):
     def set_locality(self, locality):
         self._set_parameter("locality", locality)
 
+    def set_sub_administrative_area(self, sub_administrative_area):
+        self._set_parameter("sub_administrative_area", sub_administrative_area)
+
     def set_administrative_area(self, administrative_area):
         self._set_parameter("administrative_area", administrative_area)
 
@@ -318,6 +330,9 @@ class GlobalAddressVerification(CloudApiBase):
 
     def get_locality(self):
         return self.parameters.get(self.parameter_mappings["locality"], "")
+
+    def get_sub_administrative_area(self):
+        return self.parameters.get(self.parameter_mappings["sub_administrative_area"], "")
 
     def get_administrative_area(self):
         return self.parameters.get(self.parameter_mappings["administrative_area"], "")

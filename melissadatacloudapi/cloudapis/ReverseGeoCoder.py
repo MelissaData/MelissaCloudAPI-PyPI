@@ -179,6 +179,15 @@ class ReverseGeoCoder(CloudApiBase):
         return self.handle_response(response, response_type)
 
 
+    def post_do_lookup_from_list(self, response_type):
+        """
+        This synchronous function sends a post request to the Cloud API using the /V3/WEB/ReverseGeoCode/doLookupFromList endpoint
+        """
+        self.set_endpoint("/V3/WEB/ReverseGeoCode/doLookupFromList")
+        response = self.send_post_request(self.post_body)
+        return self.handle_response(response, response_type)
+
+
     def get_api_version(self):
         """
         Makes a synchronous getversion request and parses the response for the API version.

@@ -20,6 +20,9 @@ class PersonatorConsumer(CloudApiBase):
             "birth_day": "bday",
             "birth_month": "bmo",
             "birth_year": "byr",
+            "age_approximate": "ageapprox",
+            "age_greater_than": "agegt",
+            "age_less_than": "agelt",
             "city": "city",
             "company": "comp",
             "country": "ctry",
@@ -103,6 +106,30 @@ class PersonatorConsumer(CloudApiBase):
     @birth_year.setter
     def birth_year(self, value):
         self._set_parameter("birth_year", value)
+
+    @property
+    def age_approximate(self):
+        return self._age_approximate
+
+    @age_approximate.setter
+    def age_approximate(self, value):
+        self._set_parameter("age_approximate", value)
+
+    @property
+    def age_greater_than(self):
+        return self._age_greater_than
+
+    @age_greater_than.setter
+    def age_greater_than(self, value):
+        self._set_parameter("age_greater_than", value)
+
+    @property
+    def age_less_than(self):
+        return self._age_less_than
+
+    @age_less_than.setter
+    def age_less_than(self, value):
+        self._set_parameter("age_less_than", value)
 
     @property
     def city(self):
@@ -275,6 +302,15 @@ class PersonatorConsumer(CloudApiBase):
     
     def set_birth_year(self, value):
         self._set_parameter("birth_year", value)
+
+    def set_age_approximate(self, value):
+        self._set_parameter("age_approximate", value)
+
+    def set_age_greater_than(self, value):
+        self._set_parameter("age_greater_than", value)
+
+    def set_age_less_than(self, value):
+        self._set_parameter("age_less_than", value)
     
     def set_city(self, value):
         self._set_parameter("city", value)
@@ -372,6 +408,15 @@ class PersonatorConsumer(CloudApiBase):
     def get_birth_year(self):
         return self.parameters.get(self.parameter_mappings["birth_year"], "")
 
+    def get_age_approximate(self):
+        return self.parameters.get(self.parameter_mappings["age_approximate"], "")
+
+    def get_age_greater_than(self):
+        return self.parameters.get(self.parameter_mappings["age_greater_than"], "")
+
+    def get_age_less_than(self):
+        return self.parameters.get(self.parameter_mappings["age_less_than"], "")
+
     def get_city(self):
         return self.parameters.get(self.parameter_mappings["city"], "")
 
@@ -452,6 +497,8 @@ class PersonatorConsumer(CloudApiBase):
             post_request = PersonatorConsumerPostRequest(
                 transmission_reference=self.get_transmission_reference(),
                 options=self.get_opt(),
+                actions=self.get_action(),
+                columns=self.get_cols(),
                 records=self.records,
                 customer_id=self.get_license()
             )

@@ -10,7 +10,8 @@ class GlobalExpressEntry(CloudApiBase):
         self.parameters["format"] = "json"
 
         self.parameter_mappings = {
-            "address_line_1": "line1",
+            "address_line_1": "address1",
+            "address_line_2": "address2",
             "city": "city",
             "state": "state",
             "postal": "postalcode",
@@ -22,7 +23,10 @@ class GlobalExpressEntry(CloudApiBase):
             "max_records": "maxrecords",
             "opt": "opt",
             "cols": "cols",
-            "native_char_set": "nativecharset"
+            "native_char_set": "nativecharset",
+            "transmission_reference": "t",
+            "diacritic_replace": "diacriticreplace",
+            "suite_compression": "suitecompression"
         }
 
         # Initialize private backing fields
@@ -45,6 +49,14 @@ class GlobalExpressEntry(CloudApiBase):
     @address_line_1.setter
     def address_line_1(self, value):
         self._set_parameter("address_line_1", value)
+
+    @property
+    def address_line_2(self):
+        return self._address_line_2
+
+    @address_line_2.setter
+    def address_line_2(self, value):
+        self._set_parameter("address_line_2", value)
 
     @property
     def city(self):
@@ -142,13 +154,37 @@ class GlobalExpressEntry(CloudApiBase):
     def native_char_set(self, value):
         self._set_parameter("native_char_set", value)
 
+    @property
+    def transmission_reference(self):
+        return self._transmission_reference
+
+    @transmission_reference.setter
+    def transmission_reference(self, value):
+        self._set_parameter("transmission_reference", value)
+
+    @property
+    def diacritic_replace(self):
+        return self._diacritic_replace
+
+    @diacritic_replace.setter
+    def diacritic_replace(self, value):
+        self._set_parameter("diacritic_replace", value)
+
+    @property
+    def suite_compression(self):
+        return self._suite_compression
+
+    @suite_compression.setter
+    def suite_compression(self, value):
+        self._set_parameter("suite_compression", value)
+
     # Setters
 
     def set_address_line_1(self, address_line_1):
-        if self.endpoint.lower() == "web/globalexpressaddress":
-            self._set_parameter("address_line_1", self.parameters.get("line1", "")) 
-        else:
-            self._set_parameter("address_line_1", address_line_1)
+        self._set_parameter("address_line_1", address_line_1)
+
+    def set_address_line_2(self, address_line_2):
+        self._set_parameter("address_line_2", address_line_2)
 
     def set_city(self, city):
         self._set_parameter("city", city)
@@ -186,6 +222,15 @@ class GlobalExpressEntry(CloudApiBase):
     def set_native_char_set(self, native_char_set):
         self._set_parameter("native_char_set", native_char_set)
 
+    def set_transmission_reference(self, transmission_reference):
+        self._set_parameter("transmission_reference", transmission_reference)
+
+    def set_diacritic_replace(self, diacritic_replace):
+        self._set_parameter("diacritic_replace", diacritic_replace)
+
+    def set_suite_compression(self, suite_compression):
+        self._set_parameter("suite_compression", suite_compression)
+
     def set_value(self, parameter, value):
         parameter = parameter.strip() if parameter else None
 
@@ -207,6 +252,9 @@ class GlobalExpressEntry(CloudApiBase):
 
     def get_address_line_1(self):
         return self.parameters.get(self.parameter_mappings["address_line_1"], "")
+
+    def get_address_line_2(self):
+        return self.parameters.get(self.parameter_mappings["address_line_2"], "")
 
     def get_city(self):
         return self.parameters.get(self.parameter_mappings["city"], "")
@@ -243,6 +291,15 @@ class GlobalExpressEntry(CloudApiBase):
 
     def get_native_char_set(self):
         return self.parameters.get(self.parameter_mappings["native_char_set"], "")
+
+    def get_transmission_reference(self):
+        return self.parameters.get(self.parameter_mappings["transmission_reference"], "")
+
+    def get_diacritic_replace(self):
+        return self.parameters.get(self.parameter_mappings["diacritic_replace"], "")
+
+    def get_suite_compression(self):
+        return self.parameters.get(self.parameter_mappings["suite_compression"], "")
     
     def get_global_express_address(self, type):
         """

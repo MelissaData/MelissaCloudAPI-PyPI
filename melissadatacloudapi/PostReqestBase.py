@@ -55,16 +55,18 @@ class GlobalEmailPostRequest(PostRequestBase[GlobalEmailRecordRequest]):
         }
     
 class GlobalIPPostRequest(PostRequestBase[GlobalIPRecordRequest]):
-    def __init__(self, records: List[GlobalIPRecordRequest], customer_id, transmission_reference=None, options=None):   
+    def __init__(self, records: List[GlobalIPRecordRequest], customer_id, transmission_reference=None, options=None, columns=None):
         super().__init__(records, transmission_reference, options)
         self.customer_id = customer_id
+        self.columns = columns
 
     def to_dict(self):
         return {
             "TransmissionReference": self.transmission_reference,
             "Options": self.options,
-            "Records": [GlobalIPRecordRequest.to_dict(record) for record in self.records],           
-            "CustomerId": self.customer_id
+            "Records": [GlobalIPRecordRequest.to_dict(record) for record in self.records],
+            "CustomerId": self.customer_id,
+            "Columns": self.columns
         }
 
     
@@ -95,22 +97,27 @@ class GlobalPhonePostRequest(PostRequestBase[GlobalPhoneRecordRequest]):
         }
     
 class PersonatorConsumerPostRequest(PostRequestBase[PersonatorConsumerRecordRequest]):
-    def __init__(self, records: List[PersonatorConsumerRecordRequest], customer_id, transmission_reference=None, options=None):   
+    def __init__(self, records: List[PersonatorConsumerRecordRequest], customer_id, transmission_reference=None, options=None,
+                 actions=None, columns=None):
         super().__init__(records, transmission_reference, options)
         self.customer_id = customer_id
+        self.actions = actions
+        self.columns = columns
 
     def to_dict(self):
         return {
             "TransmissionReference": self.transmission_reference,
             "Options": self.options,
             "Records": [PersonatorConsumerRecordRequest.to_dict(record) for record in self.records],
-            "CustomerId": self.customer_id
+            "CustomerId": self.customer_id,
+            "Actions": self.actions,
+            "Columns": self.columns
         }
     
 class PropertyPostRequest(PostRequestBase[PropertyRecordRequest]):
     def __init__(
         self, customer_id, records: List[PropertyRecordRequest]=[], transmission_reference=None, options=None,
-        columns="", total_records="", apn="", fips="", free_form="", property_mak="", owner_mak=""
+        columns="", total_records="", apn="", fips="", free_form="", property_mak="", owner_mak="", transaction_id=""
     ):
         super().__init__(records, transmission_reference, options)
 
@@ -122,6 +129,7 @@ class PropertyPostRequest(PostRequestBase[PropertyRecordRequest]):
         self.free_form = free_form
         self.property_mak = property_mak
         self.owner_mak = owner_mak
+        self.transaction_id = transaction_id
 
     def to_dict(self):
         return {
@@ -133,7 +141,8 @@ class PropertyPostRequest(PostRequestBase[PropertyRecordRequest]):
             "FIPS": self.fips,
             "FreeForm": self.free_form,
             "PropertyMAK": self.property_mak,
-            "OwnerMAK": self.owner_mak
+            "OwnerMAK": self.owner_mak,
+            "TransactionID": self.transaction_id
         }
     
 
@@ -178,16 +187,18 @@ class SSNNameMatchPostRequest(PostRequestBase[SSNNameMatchRecordRequest]):
         }
 
 class StreetRoutePostRequest(PostRequestBase[StreetRouteRecordRequest]):
-    def __init__(self, records: List[StreetRouteRecordRequest], customer_id, transmission_reference=None, options=None):
+    def __init__(self, records: List[StreetRouteRecordRequest], customer_id, transmission_reference=None, options=None, units=None):
         super().__init__(records, transmission_reference, options)
         self.customer_id = customer_id
+        self.units = units
 
     def to_dict(self):
         return {
             "TransmissionReference": self.transmission_reference,
             "Options": self.options,
-            "Records": [StreetRouteRecordRequest.to_dict(record) for record in self.records],           
-            "CustomerId": self.customer_id
+            "Records": [StreetRouteRecordRequest.to_dict(record) for record in self.records],
+            "CustomerId": self.customer_id,
+            "Units": self.units
         }
 
 

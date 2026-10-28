@@ -15,6 +15,7 @@ class Property(CloudApiBase):
 
         self.parameter_mappings = {
             "address_key": "addresskey",
+            "account": "account",
             "address_line_1": "a1",
             "address_line_2": "a2",
             "apn": "apn",
@@ -30,6 +31,7 @@ class Property(CloudApiBase):
             "opt": "opt",
             "owner_mak": "mak",
             "total_records": "totalRecords",
+            "transaction_id": "txid",
         }
 
         # Initialize private backing fields
@@ -52,6 +54,14 @@ class Property(CloudApiBase):
     @address_key.setter
     def address_key(self, value):
         self._set_parameter("address_key", value)
+
+    @property
+    def account(self):
+        return self._account
+
+    @account.setter
+    def account(self, value):
+        self._set_parameter("account", value)
 
     @property
     def address_line_1(self):
@@ -173,11 +183,22 @@ class Property(CloudApiBase):
     def total_records(self, value):
         self._set_parameter("total_records", value)
 
+    @property
+    def transaction_id(self):
+        return self._transaction_id
+
+    @transaction_id.setter
+    def transaction_id(self, value):
+        self._set_parameter("transaction_id", value)
+
 
     # Setters
 
     def set_address_key(self, address_key):
         self._set_parameter("address_key", address_key)
+
+    def set_account(self, account):
+        self._set_parameter("account", account)
 
     def set_address_line_1(self, address_line_1):
         self._set_parameter("address_line_1", address_line_1)
@@ -224,6 +245,9 @@ class Property(CloudApiBase):
     def set_total_records(self, total_records):
         self._set_parameter("total_records", total_records)
 
+    def set_transaction_id(self, transaction_id):
+        self._set_parameter("transaction_id", transaction_id)
+
     def set_post_body(self, post_body):
         self._set_parameter("post_body", post_body)
 
@@ -251,6 +275,9 @@ class Property(CloudApiBase):
 
     def get_address_key(self):
         return self.parameters.get(self.parameter_mappings["address_key"], "")
+
+    def get_account(self):
+        return self.parameters.get(self.parameter_mappings["account"], "")
 
     def get_address_line_1(self):
         return self.parameters.get(self.parameter_mappings["address_line_1"], "")
@@ -296,6 +323,9 @@ class Property(CloudApiBase):
 
     def get_total_records(self):
         return self.parameters.get(self.parameter_mappings["total_records"], "")
+
+    def get_transaction_id(self):
+        return self.parameters.get(self.parameter_mappings["transaction_id"], "")
 
     def get_post_batch_body(self):
         return self.post_body

@@ -26,9 +26,13 @@ class PersonatorSearch(CloudApiBase):
             "phone": "phone",
             "email": "email",
             "mak": "mak",
+            "mik": "mik",
             "birth_day": "bday",
             "birth_month": "bmonth",
-            "birth_year": "byear"
+            "birth_year": "byear",
+            "age_approximate": "ageapprox",
+            "age_greater_than": "agegt",
+            "age_less_than": "agelt"
         }
 
         # Initialize private backing fields
@@ -162,6 +166,14 @@ class PersonatorSearch(CloudApiBase):
         self._set_parameter("mak", value)
 
     @property
+    def mik(self):
+        return self._mik
+
+    @mik.setter
+    def mik(self, value):
+        self._set_parameter("mik", value)
+
+    @property
     def birth_day(self):
         return self._birth_day
 
@@ -184,6 +196,30 @@ class PersonatorSearch(CloudApiBase):
     @birth_year.setter
     def birth_year(self, value):
         self._set_parameter("birth_year", value)
+
+    @property
+    def age_approximate(self):
+        return self._age_approximate
+
+    @age_approximate.setter
+    def age_approximate(self, value):
+        self._set_parameter("age_approximate", value)
+
+    @property
+    def age_greater_than(self):
+        return self._age_greater_than
+
+    @age_greater_than.setter
+    def age_greater_than(self, value):
+        self._set_parameter("age_greater_than", value)
+
+    @property
+    def age_less_than(self):
+        return self._age_less_than
+
+    @age_less_than.setter
+    def age_less_than(self, value):
+        self._set_parameter("age_less_than", value)
 
     # Setters
 
@@ -232,6 +268,9 @@ class PersonatorSearch(CloudApiBase):
     def set_mak(self, value):
         self._set_parameter("mak", value)
 
+    def set_mik(self, value):
+        self._set_parameter("mik", value)
+
     def set_birth_day(self, value):
         self._set_parameter("birth_day", value)
 
@@ -240,6 +279,15 @@ class PersonatorSearch(CloudApiBase):
 
     def set_birth_year(self, value):
         self._set_parameter("birth_year", value)
+
+    def set_age_approximate(self, value):
+        self._set_parameter("age_approximate", value)
+
+    def set_age_greater_than(self, value):
+        self._set_parameter("age_greater_than", value)
+
+    def set_age_less_than(self, value):
+        self._set_parameter("age_less_than", value)
 
     def set_value(self, parameter, value):
         parameter = parameter.strip() if parameter else None
@@ -304,6 +352,9 @@ class PersonatorSearch(CloudApiBase):
     def get_mak(self):
         return self.parameters.get(self.parameter_mappings["mak"], "")
 
+    def get_mik(self):
+        return self.parameters.get(self.parameter_mappings["mik"], "")
+
     def get_birth_day(self):
         return self.parameters.get(self.parameter_mappings["birth_day"], "")
 
@@ -312,6 +363,15 @@ class PersonatorSearch(CloudApiBase):
 
     def get_birth_year(self):
         return self.parameters.get(self.parameter_mappings["birth_year"], "")
+
+    def get_age_approximate(self):
+        return self.parameters.get(self.parameter_mappings["age_approximate"], "")
+
+    def get_age_greater_than(self):
+        return self.parameters.get(self.parameter_mappings["age_greater_than"], "")
+
+    def get_age_less_than(self):
+        return self.parameters.get(self.parameter_mappings["age_less_than"], "")
     
     # Class Methods
     

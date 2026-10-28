@@ -41,10 +41,11 @@ class GlobalAddressVerificationRecordRequest:
                  address_line_3=None, address_line_4=None, address_line_5=None, address_line_6=None, 
                  address_line_7=None, address_line_8=None, double_dependent_locality=None, 
                  dependent_locality=None, locality=None, sub_administrative_area=None, 
-                 administrative_area=None, postal_code=None, sub_national_area=None, country=None):
-        
+                 administrative_area=None, postal_code=None, sub_national_area=None, country=None, last_name=None):
+
         self.record_id = record_id
         self.organization = organization
+        self.last_name = last_name
         self.address_line_1 = address_line_1
         self.address_line_2 = address_line_2
         self.address_line_3 = address_line_3
@@ -66,6 +67,7 @@ class GlobalAddressVerificationRecordRequest:
         return {
             "RecordID": self.record_id,
             "Organization": self.organization,
+            "LastName": self.last_name,
             "AddressLine1": self.address_line_1,
             "AddressLine2": self.address_line_2,
             "AddressLine3": self.address_line_3,
@@ -108,16 +110,18 @@ class GlobalIPRecordRequest:
         }
 
 class GlobalNameRecordRequest:
-    def __init__(self, record_id=None, full_name=None, company=None):
+    def __init__(self, record_id=None, full_name=None, company=None, country=None):
         self.record_id = record_id
         self.full_name = full_name
         self.company = company
+        self.country = country
 
     def to_dict(self):
         return {
             "RecordID": self.record_id,
             "FullName": self.full_name,
-            "Company": self.company
+            "Company": self.company,
+            "Country": self.country
         }
     
 class GlobalPhoneRecordRequest:
@@ -204,7 +208,8 @@ class PersonatorConsumerRecordRequest:
     def __init__(self, record_id=None, address_line_1=None, address_line_2=None, birth_day=None, birth_month=None,
                  birth_year=None, city=None, company_name=None, country=None, email_address=None, first_name=None,
                  free_form=None, full_name=None, ip_address=None, last_line=None, last_name=None, melissa_address_key=None,
-                 phone_number=None, postal_code=None, social_security=None, state=None):
+                 phone_number=None, postal_code=None, social_security=None, state=None, mik=None, age_approximate=None,
+                 age_greater_than=None, age_less_than=None):
         self.record_id = record_id
         self.address_line_1 = address_line_1
         self.address_line_2 = address_line_2
@@ -226,6 +231,10 @@ class PersonatorConsumerRecordRequest:
         self.postal_code = postal_code
         self.social_security = social_security
         self.state = state
+        self.mik = mik
+        self.age_approximate = age_approximate
+        self.age_greater_than = age_greater_than
+        self.age_less_than = age_less_than
 
     def to_dict(self):
         return {
@@ -249,7 +258,11 @@ class PersonatorConsumerRecordRequest:
             "PhoneNumber": self.phone_number,
             "PostalCode": self.postal_code,
             "SocialSecurity": self.social_security,
-            "State": self.state
+            "State": self.state,
+            "MIK": self.mik,
+            "AgeApproximate": self.age_approximate,
+            "AgeGreaterThan": self.age_greater_than,
+            "AgeLessThan": self.age_less_than
         }
 
 class PersonatorIdentityRecordRequest():
@@ -258,7 +271,7 @@ class PersonatorIdentityRecordRequest():
         name_options="", options="", national_id="", first_name="", last_name="", full_name="", company="", phone_number="", 
         email="", date_of_birth="", account_number="", address_line_1="", address_line_2="", address_line_3="", address_line_4="", 
         address_line_5="", address_line_6="", address_line_7="", address_line_8="", locality="", administrative_area="", 
-        postal_code="", country="", country_of_origin="", state=""
+        postal_code="", country="", country_of_origin="", state="", privacy=""
     ):
         self.transmission_reference = transmission_reference
         self.customer_id = customer_id
@@ -291,6 +304,7 @@ class PersonatorIdentityRecordRequest():
         self.country = country
         self.country_of_origin = country_of_origin
         self.state = state
+        self.privacy = privacy
 
     def to_dict(self):
         return {
@@ -325,6 +339,7 @@ class PersonatorIdentityRecordRequest():
             "Country": self.country,
             "CountryOfOrigin": self.country_of_origin,
             "State": self.state,
+            "Privacy": self.privacy,
         }
 
 class PropertyRecordRequest:
@@ -392,6 +407,8 @@ class ReverseGeoCoderRecordRequest:
         max_records="",
         options="",
         transmission_reference="",
+        melissa_address_key="",
+        records=None,
     ):
         self.customer_id = customer_id
         self.latitude = latitude
@@ -400,6 +417,8 @@ class ReverseGeoCoderRecordRequest:
         self.max_records = max_records
         self.options = options
         self.transmission_reference = transmission_reference
+        self.melissa_address_key = melissa_address_key
+        self.records = records or []
 
     def to_dict(self):
         return {
@@ -410,6 +429,19 @@ class ReverseGeoCoderRecordRequest:
             "MaxRecords": self.max_records,
             "Options": self.options,
             "TransmissionReference": self.transmission_reference,
+            "MelissaAddressKey": self.melissa_address_key,
+            "Records": [ReverseGeoCoderFromListRecordRequest.to_dict(record) for record in self.records],
+        }
+
+class ReverseGeoCoderFromListRecordRequest:
+    def __init__(self, record_id="", melissa_address_key=""):
+        self.record_id = record_id
+        self.melissa_address_key = melissa_address_key
+
+    def to_dict(self):
+        return {
+            "RecordID": self.record_id,
+            "MelissaAddressKey": self.melissa_address_key,
         }
 
 class SmartMoverRecordRequest:

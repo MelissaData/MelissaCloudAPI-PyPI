@@ -7,7 +7,7 @@ The Melissa Cloud API Python Package provides a unified and streamlined way to a
 
 For the official PyPi repository, please visit [Melissa Cloud API PyPi Package](https://pypi.org/project/melissadatacloudapi/).
 
-For more details about how to use the Melissa Cloud API Python Package, please visit the [Melissa Docs](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-packages-installation-guide.html#pip-installation-python).
+For more details about how to use the Melissa Cloud API Python Package, please visit the [Melissa Docs](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-packages-installation-guide.html#pip-installation-python)
 
 For more details about Melissa Cloud APIs, please click [here](https://docs.melissa.com/cloud-api/cloud-api/cloud-api-index.html).
 

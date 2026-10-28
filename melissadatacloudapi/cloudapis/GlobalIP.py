@@ -119,6 +119,7 @@ class GlobalIP(CloudApiBase):
         if self.records and len(self.records) > 0:
             post_request = GlobalIPPostRequest(
                 transmission_reference=self.get_transmission_reference(),
+                columns=self.get_cols(),
                 records=self.records,
                 customer_id=self.get_license()
             )
